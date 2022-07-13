@@ -6,7 +6,6 @@ import { ReactElement, ReactNode } from 'react'
 import 'antd/dist/antd.css'
 import '../../styles/globals.css'
 import 'react-toastify/dist/ReactToastify.css'
-import React from 'react'
 
 export type NextPageWithLayout<P = any> = NextPage<P> & {
   getLayout?: (page: ReactElement) => ReactNode
@@ -25,4 +24,5 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout): ReactNode {
     </>
   )
 }
+
 export default MyApp

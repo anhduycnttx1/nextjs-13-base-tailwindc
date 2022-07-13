@@ -1,8 +1,6 @@
 import Head from 'next/head'
 import { ReactElement } from 'react'
 import DashboardLayout from '../layout/dashboard'
-import DashboardContainer from '../container/dashboard'
-import { Button } from 'antd'
 import ProductContainer from '../container/products'
 
 export default function ProductsPage() {

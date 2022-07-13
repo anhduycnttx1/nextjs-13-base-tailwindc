@@ -14,14 +14,14 @@ export default function DashboardLayout({ children }: React.PropsWithChildren<Da
       <Layout>
         <MenuDashboardLayout collapsed={collapsed} setCollapsed={setCollapsed} />
         <Layout
-          className={`content-layout mt-14 ${collapsed ? 'ml-[80px]' : 'ml-[200px]'}`}
+          className={`mt-20 ${collapsed ? 'ml-[80px]' : 'ml-[200px]'}`}
           style={{
             transitionProperty: 'all',
             transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
             transitionDuration: '300ms',
           }}
         >
-          <Layout.Content style={{ margin: '24x 24px 0', overflow: 'initial' }}>{children}</Layout.Content>
+          <Layout.Content className="mx-[24px]">{children}</Layout.Content>
           <Layout.Footer style={{ textAlign: 'center' }}>DogiApp ©2022 Created by duydoit</Layout.Footer>
         </Layout>
       </Layout>
