@@ -4,6 +4,7 @@ import { HomeOutlined } from '@ant-design/icons'
 import { PlusOutlined, SettingOutlined, ReloadOutlined } from '@ant-design/icons'
 
 import Link from 'next/link'
+import TableProduct from './table-products'
 
 export default function ProductContainer() {
   return (
@@ -41,12 +42,7 @@ export default function ProductContainer() {
                 </Button>
               </Tooltip>
 
-              <Popover
-                content={contentPopover}
-                title="Title"
-                placement="bottomRight"
-                trigger={'click'}
-              >
+              <Popover content={contentPopover} title="Title" placement="bottomRight" trigger={'click'}>
                 <Tooltip placement="topLeft" title="Setting">
                   <Button type="text">
                     <SettingOutlined />
@@ -56,7 +52,7 @@ export default function ProductContainer() {
             </Row>
           </Space>
         </Row>
-        {/* <TableProduct /> */}
+        <TableProduct />
       </Space>
     </Space>
   )

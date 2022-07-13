@@ -5,9 +5,7 @@ import { useEffect, useState } from 'react'
 type DashBoardLayout = {}
 import { AiOutlineMenuFold, AiOutlineMenuUnfold } from 'react-icons/ai'
 
-export default function DashboardLayout({
-  children,
-}: React.PropsWithChildren<DashBoardLayout>): JSX.Element {
+export default function DashboardLayout({ children }: React.PropsWithChildren<DashBoardLayout>): JSX.Element {
   const [collapsed, setCollapsed] = useState(false)
 
   return (
@@ -23,12 +21,8 @@ export default function DashboardLayout({
             transitionDuration: '300ms',
           }}
         >
-          <Layout.Content style={{ margin: '24x 24px 0', overflow: 'initial' }}>
-            {children}
-          </Layout.Content>
-          <Layout.Footer style={{ textAlign: 'center' }}>
-            DogiApp ©2022 Created by duydoit
-          </Layout.Footer>
+          <Layout.Content style={{ margin: '24x 24px 0', overflow: 'initial' }}>{children}</Layout.Content>
+          <Layout.Footer style={{ textAlign: 'center' }}>DogiApp ©2022 Created by duydoit</Layout.Footer>
         </Layout>
       </Layout>
       <Button
