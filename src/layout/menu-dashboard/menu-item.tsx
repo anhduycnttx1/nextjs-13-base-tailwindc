@@ -26,12 +26,12 @@ export const menuPages: MenuProps['items'] = [
     icon: <HiOutlineHome />,
   },
   {
-    label: 'Sản phẩm',
+    label: 'Quản lý sản phẩm',
     key: 'item-0',
     icon: <FiPackage />,
     children: [
       {
-        label: setLabel('Tất cả', '/products'),
+        label: setLabel('Tất cả sản phẩm', '/portal/product/list'),
         key: 'item-0a',
         icon: <HiViewGrid />,
       },
@@ -48,17 +48,17 @@ export const menuPages: MenuProps['items'] = [
     ],
   },
   {
-    label: 'Đơn hàng',
+    label: 'Quản lý đơn hàng',
     key: 'item-1',
     icon: <HiOutlineShoppingCart />,
     children: [
       {
-        label: 'Đơn bán',
+        label: setLabel('Đơn bán', '/portal/sale/order'),
         key: 'item-1a',
         icon: <HiViewGrid />,
       },
       {
-        label: 'Sàn TMĐT',
+        label: setLabel('Đơn sàn TMĐT', '/portal/sale/ecom'),
         key: 'item-1b',
         icon: <HiOutlineCube />,
       },
@@ -90,67 +90,15 @@ export const menuPages: MenuProps['items'] = [
     icon: <HiOutlinePresentationChartLine />,
   },
 ]
-export const menuUsers: MenuProps['items'] = [
-  {
-    label: setLabel('Tổng quan', '/'),
-    key: 'home',
-    icon: <HiOutlineHome />,
-  },
-  {
-    label: 'Sản phẩm',
-    key: 'item-0',
-    icon: <FiPackage />,
-    children: [
-      {
-        label: setLabel('Tất cả', '/products'),
-        key: 'item-0a',
-        icon: <HiViewGrid />,
-      },
-      {
-        label: 'Thiết lập giá',
-        key: 'item-0b',
-        icon: <HiTag />,
-      },
-      {
-        label: 'Kiểm kho',
-        key: 'item-0c',
-        icon: <HiOutlineClipboardCheck />,
-      },
-    ],
-  },
-  {
-    label: 'Đơn hàng',
-    key: 'item-1',
-    icon: <HiOutlineShoppingCart />,
-    children: [
-      {
-        label: 'Đơn bán',
-        key: 'item-1a',
-        icon: <HiViewGrid />,
-      },
-      {
-        label: 'Sàn TMĐT',
-        key: 'item-1b',
-        icon: <HiOutlineCube />,
-      },
-    ],
-  },
-  {
-    label: setLabel('Đối tác', '/'),
-    key: 'item-2',
-    icon: <HiOutlineBriefcase />,
-  },
-  {
-    label: setLabel('Sổ quỷ', '/'),
-    key: 'item-3',
-    icon: <HiOutlineChartPie />,
-  },
-  {
-    label: setLabel('Báo cáo', '/'),
-    key: 'item-4',
-    icon: <HiOutlinePresentationChartLine />,
-  },
-]
+
+function setLabel(label: string, url: string): ReactNode {
+  return (
+    <Link href={url}>
+      <a>{label}</a>
+    </Link>
+  )
+}
+
 export const menuLanguage: MenuProps['items'] = [
   {
     label: 'Vietnam',
@@ -180,11 +128,3 @@ export const menuAccount: MenuProps['items'] = [
     icon: <HiOutlineLogout />,
   },
 ]
-
-function setLabel(label: string, url: string): ReactNode {
-  return (
-    <Link href={url}>
-      <a>{label}</a>
-    </Link>
-  )
-}

@@ -1,145 +1,106 @@
-import { Space, Table, Tag } from 'antd'
+import { Row, Space, Table, Image, Button } from 'antd'
 import React from 'react'
+import { BsEye, BsSuitHeart } from 'react-icons/bs'
+import { formatCurrentVND } from '../../../common/helper/formatCurrencyVND'
+import { formatNumBig } from '../../../common/helper/formatNumberBig'
+
+import { listProduct } from '../../../common/mocks/product/list-product'
+
+interface DataProductType {
+  key: React.Key
+  name: string
+  age: number
+  address: string
+}
 
 const columns = [
   {
-    title: 'Name',
+    title: 'Sản phẩm',
     dataIndex: 'name',
     key: 'name',
-    render: (text: any) => <a>{text}</a>,
+    width: 450,
+    render: (text: any, record: any) => {
+      return (
+        <Space align="start" size="large">
+          <Image width={70} preview={false} src={record.image} alt={record.itemid} />
+          <Space direction="vertical" size={2}>
+            <span className="font-medium">{text}</span>
+            <Space size="large" className=" opacity-60">
+              <Space align="baseline">
+                <BsEye className="block" />
+                <span>{record.liked_count}</span>
+              </Space>
+              <Space align="baseline">
+                <BsSuitHeart className="block" />
+                <span>{record.sold}</span>
+              </Space>
+            </Space>
+          </Space>
+        </Space>
+      )
+    },
   },
   {
-    title: 'Age',
-    dataIndex: 'age',
-    key: 'age',
+    title: 'Giá gốc',
+    dataIndex: 'price_max_before_discount',
+    key: 'price_max_before_discount',
+    render: (text: string) => <span>{formatCurrentVND(text)}</span>,
   },
   {
-    title: 'Address',
-    dataIndex: 'address',
-    key: 'address',
+    title: 'Giá bán',
+    dataIndex: 'price_max',
+    key: 'price_max',
+    render: (text: string) => <span>{formatCurrentVND(text)}</span>,
   },
   {
-    title: 'Tags',
-    key: 'tags',
-    dataIndex: 'tags',
-    render: (_: any, { tags }: any) => (
-      <>
-        {tags.map((tag: any) => {
-          let color = tag.length > 5 ? 'geekblue' : 'green'
-
-          if (tag === 'loser') {
-            color = 'volcano'
-          }
-
-          return (
-            <Tag color={color} key={tag}>
-              {tag.toUpperCase()}
-            </Tag>
-          )
-        })}
-      </>
-    ),
+    title: 'Tồn kho',
+    dataIndex: 'stock',
+    key: 'stock',
+    render: (text: string) => <span>{formatNumBig(text, 1)}</span>,
   },
   {
-    title: 'Action',
+    title: 'Đã bán',
+    dataIndex: 'cmt_count',
+    key: 'cmt_count',
+    render: (text: string) => <span>{formatNumBig(text, 1)}</span>,
+  },
+  {
+    title: 'Hành động',
     key: 'action',
+    width: 200,
     render: (_: any, record: any) => (
-      <Space size="middle">
-        <a>Invite {record.name}</a>
-        <a>Delete</a>
+      <Space size={1}>
+        <Button type="link" className="inline">
+          Cập nhật
+        </Button>
+        <Button type="link" className="inline">
+          Sao chép
+        </Button>
+        {/* <Button type="link" className="inline">
+          Xem thêm
+        </Button> */}
       </Space>
     ),
   },
 ]
-const data = [
-  {
-    key: '1',
-    name: 'John Brown',
-    age: 32,
-    address: 'New York No. 1 Lake Park',
-    tags: ['nice', 'developer'],
-  },
-  {
-    key: '2',
-    name: 'Jim Green',
-    age: 42,
-    address: 'London No. 1 Lake Park',
-    tags: ['loser'],
-  },
-  {
-    key: '3',
-    name: 'Joe Black',
-    age: 32,
-    address: 'Sidney No. 1 Lake Park',
-    tags: ['cool', 'teacher'],
-  },
-  {
-    key: '4',
-    name: 'John Brown',
-    age: 32,
-    address: 'New York No. 1 Lake Park',
-    tags: ['nice', 'developer'],
-  },
-  {
-    key: '5',
-    name: 'Jim Green',
-    age: 42,
-    address: 'London No. 1 Lake Park',
-    tags: ['loser'],
-  },
-  {
-    key: '6',
-    name: 'Joe Black',
-    age: 32,
-    address: 'Sidney No. 1 Lake Park',
-    tags: ['cool', 'teacher'],
-  },
-  {
-    key: '7',
-    name: 'John Brown',
-    age: 32,
-    address: 'New York No. 1 Lake Park',
-    tags: ['nice', 'developer'],
-  },
-  {
-    key: '8',
-    name: 'Jim Green',
-    age: 42,
-    address: 'London No. 1 Lake Park',
-    tags: ['loser'],
-  },
-  {
-    key: '9',
-    name: 'Joe Black',
-    age: 32,
-    address: 'Sidney No. 1 Lake Park',
-    tags: ['cool', 'teacher'],
-  },
-  {
-    key: '10',
-    name: 'John Brown',
-    age: 32,
-    address: 'New York No. 1 Lake Park',
-    tags: ['nice', 'developer'],
-  },
-  {
-    key: '11',
-    name: 'Jim Green',
-    age: 42,
-    address: 'London No. 1 Lake Park',
-    tags: ['loser'],
-  },
-  {
-    key: '12',
-    name: 'Joe Black',
-    age: 32,
-    address: 'Sidney No. 1 Lake Park',
-    tags: ['cool', 'teacher'],
-  },
-]
 
 function TableProduct() {
-  return <Table columns={columns} dataSource={data} />
+  const rowSelection = {
+    onChange: (selectedRowKeys: React.Key[], selectedRows: any) => {
+      console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows)
+    },
+    getCheckboxProps: (record: any) => ({}),
+  }
+  return (
+    <Table
+      rowSelection={{
+        type: 'checkbox',
+        ...rowSelection,
+      }}
+      columns={columns}
+      dataSource={listProduct}
+    />
+  )
 }
 
 export default TableProduct

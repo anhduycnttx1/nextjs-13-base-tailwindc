@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { ReactElement } from 'react'
 import DashboardLayout from '../layout/dashboard'
-import DashboardContainer from '../container/dashboard'
+import HomeContainer from '../container/home'
 
 export default function HomePage() {
   return (
@@ -10,7 +10,7 @@ export default function HomePage() {
         <title>Home</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <DashboardContainer />
+      <HomeContainer />
     </>
   )
 }

@@ -1,7 +1,7 @@
 import { Menu, MenuProps, Layout, Button } from 'antd'
 import { userAgent } from 'next/server'
 import React from 'react'
-import { menuPages, menuUsers } from './menu-item'
+import { menuPages } from './menu-item'
 
 type MenuDashboardLayoutProps = {
   collapsed?: boolean
@@ -33,7 +33,7 @@ export default function MenuDashboardLayout(props: MenuDashboardLayoutProps) {
           mode="inline"
           defaultSelectedKeys={['home']}
           style={{ height: '100%', marginTop: 70 }}
-          items={false ? menuPages : menuUsers}
+          items={menuPages}
         />
       </div>
     </Layout.Sider>
